@@ -16,18 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
-from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('productos.urls')),
-    path('agregar/', views.agregar_producto, name='agregar_producto'),
-    path('editar/<int:pk>/', views.editar_producto, name='editar_producto'),
-    path('eliminar/<int:pk>/', views.eliminar_producto, name='eliminar_producto'),
-
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
