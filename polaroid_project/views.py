@@ -13,7 +13,9 @@ def agregar_producto(request):
         form = ProductoForm()
     return render(request, 'agregar_producto.html', {'form': form})
 
+
 def inicio(request):
-    return render(request, 'inicio.html')
+    productos = Producto.objects.all()[:6]  # Muestra los primeros 6 productos
+    return render(request, 'productos/inicio.html', {'productos': productos})
 
 

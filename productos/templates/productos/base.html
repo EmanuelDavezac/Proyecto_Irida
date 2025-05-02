@@ -11,11 +11,49 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'inicio' %}">Mi tienda</a>
+        <a class="navbar-brand" href="{% url 'inicio' %}">IridaStudio</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'lista_productos' %}">Productos</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'agregar_producto' %}">Agregar Producto</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Sobre Mí</a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="agregarProductoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Agregar Producto
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="agregarProductoDropdown">
+                        <li><a class="dropdown-item" href="{% url 'agregar_producto' %}">Agregar nuevo</a></li>
+                        {% if productos %}
+                            <li><a class="dropdown-item" href="{% url 'editar_producto' productos.0.pk %}">Editar imagen</a></li>
+                            <li><a class="dropdown-item text-danger" href="{% url 'borrar_producto' productos.0.pk %}">Eliminar imagen</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+                
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
+                        <li><a class="dropdown-item" href="{% url 'perfil_usuario' %}">Perfil</a></li>
+                        <li><a class="dropdown-item" href="{% url 'editar_perfil' user.pk %}">Editar perfil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item text-danger">Cerrar sesión</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'registro' %}">Registrarse</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

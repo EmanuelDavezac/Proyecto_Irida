@@ -1,0 +1,23 @@
+{% extends "productos/base.html" %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Editar Perfil</h1>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-3 text-center">
+        <a href="{% url 'perfil_usuario' %}" class="btn btn-secondary">Volver al Perfil</a>
+    </div>
+</div>
+{% endblock %}

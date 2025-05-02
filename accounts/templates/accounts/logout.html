@@ -1,0 +1,20 @@
+{% extends "productos/base.html" %}
+
+{% block title %}Cerrar Sesión{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center text-danger">Has cerrado sesión</h1>
+
+    <div class="card shadow">
+        <div class="card-body text-center">
+            <p>Tu sesión ha sido cerrada correctamente.</p>
+
+            <div class="mt-3">
+                <a href="{% url 'inicio' %}" class="btn btn-secondary">Volver al Inicio</a>
+                <a href="{% url 'login' %}" class="btn btn-primary ms-2">Iniciar sesión nuevamente</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "productos/base.html" %}
+
+{% load static %}
+<img src="{% static 'img/mi_foto.jpg' %}" alt="Mi Foto" class="img-fluid rounded-circle shadow" width="250">
+
+
+{% block title %}Sobre Mí{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row align-items-center">
+        <!-- Sección de imagen -->
+        <div class="col-md-4 text-center">
+            {% if user.is_authenticated and user.perfil.avatar %}
+                <img src="{{ user.perfil.avatar.url }}" alt="Foto de Emanuel" class="img-fluid rounded-circle shadow" width="250">
+            {% else %}
+                <img src="{% static 'img/default-avatar.png' %}" alt="Foto por defecto" class="img-fluid rounded-circle shadow" width="250">
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+        <!-- Sección de texto -->
+        <div class="col-md-8">
+            <h1 class="fw-bold">Hola, soy Emanuel</h1>
+            <p class="fs-5 text-muted">
+                Soy un apasionado del desarrollo de software, siempre en busca de nuevos desafíos y oportunidades para mejorar mis habilidades. Me encanta crear soluciones digitales que sean funcionales, eficientes y con una gran experiencia de usuario. Mi enfoque combina creatividad y precisión técnica, lo que me permite desarrollar aplicaciones bien estructuradas y visualmente atractivas.
+                Disfruto explorando nuevas tecnologías, perfeccionando mis conocimientos en Python y Django, y enfrentando retos de programación con determinación y entusiasmo. Cada proyecto es una oportunidad para aprender, innovar y superar obstáculos.
+                Mi objetivo es seguir creciendo como desarrollador, contribuyendo con proyectos que marquen la diferencia y dejando mi huella en el mundo de la tecnología.
+
+            </p>
+            <p class="fs-5 text-muted">
+                Mi objetivo es ofrecerte productos personalizados con calidad y dedicación. ¡Si tienes una idea en mente, estaré encantado de hacerla realidad!
+            </p>
+            <a href="https://www.linkedin.com/in/emanuel-davezac-658bb8348/" class="btn btn-primary btn-lg mt-3" target="_blank">Contáctame</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

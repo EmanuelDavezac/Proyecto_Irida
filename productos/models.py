@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=50)
@@ -16,7 +17,7 @@ class Cliente(models.Model):
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
+    descripcion = RichTextField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='productos/', blank=True, null=True)

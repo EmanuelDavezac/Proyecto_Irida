@@ -1,0 +1,17 @@
+{% extends "productos/base.html" %}
+
+{% block title %}{{ producto.nombre }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="card shadow">
+        <div class="card-body text-center">
+            <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img-fluid mb-3">
+            <h1 class="mb-3">{{ producto.nombre }}</h1>
+            <p class="text-muted fs-4">${{ producto.precio }}</p>
+            <p class="fs-5">{{ producto.descripcion }}</p>
+            <a href="{% url 'lista_productos' %}" class="btn btn-secondary mt-3">Volver a la lista</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

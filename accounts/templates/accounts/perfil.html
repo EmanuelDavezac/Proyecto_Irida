@@ -1,0 +1,29 @@
+{% extends "productos/base.html" %}
+
+{% block title %}Perfil de Usuario{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Mi Perfil</h1>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="text-center">
+                {% if perfil.avatar %}
+                    <img src="{{ perfil.avatar.url }}" alt="Avatar" class="rounded-circle" width="150">
+                {% else %}
+                    <p><em>No hay imagen de perfil</em></p>
+                {% endif %}
+            </div>
+
+            <p><strong>Nombre:</strong> {{ perfil.user.first_name }} {{ perfil.user.last_name }}</p>
+            <p><strong>Email:</strong> {{ perfil.user.email }}</p>
+            <p><strong>Biografía:</strong> {{ perfil.biografia }}</p>
+            <p><strong>Link:</strong> <a href="{{ perfil.link }}" target="_blank">{{ perfil.link }}</a></p>
+            <p><strong>Fecha de cumpleaños:</strong> {{ perfil.fecha_nacimiento }}</p>
+
+            <a href="{% url 'editar_perfil' perfil.pk %}" class="btn btn-primary w-100">Editar Perfil</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
